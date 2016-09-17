@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class CookerActivity extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -31,7 +33,7 @@ public class CookerActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
     private MenuAdapter adapter;
 
-    ArrayList<DataSnapshot> dataSnapshots = new ArrayList<>();
+    List<DataSnapshot> dataSnapshots = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +88,10 @@ public class CookerActivity extends AppCompatActivity {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 Log.d("test_ChildListener","onChildRemoved "+dataSnapshot.toString());
-                for(DataSnapshot data : dataSnapshots){
+                for(Iterator<DataSnapshot> it = dataSnapshots.iterator(); it.hasNext();){
+                    DataSnapshot data = it.next();
                     if(data.getKey().equals(dataSnapshot.getKey())){
-                        dataSnapshots.remove(data);
+                        it.remove();
                         adapter.notifyDataSetChanged();
                     }
                 }

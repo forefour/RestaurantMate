@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Foremost on 31/8/2559.
@@ -43,9 +44,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     Context c;
 
-    ArrayList<DataSnapshot> dataSnapshots = new ArrayList<>();
+    List<DataSnapshot> dataSnapshots = new ArrayList<>();
 
-    public MenuAdapter(Context c, ArrayList<DataSnapshot> dataSnapshots){
+    public MenuAdapter(Context c, List<DataSnapshot> dataSnapshots){
 
         this.c = c;
         this.dataSnapshots = dataSnapshots;
