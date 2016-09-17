@@ -26,6 +26,25 @@ public class AppActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(AppActivity.this, LoginActivity.class);
                 startActivity(intent);
+                progress.dismiss();
+            }
+        });
+
+        Button cooker = (Button)findViewById(R.id.cooker_ativity);
+        cooker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppActivity.this, CookerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button table = (Button)findViewById(R.id.table_activity);
+        table.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppActivity.this, TableActivity.class);
+                startActivity(intent);
             }
         });
     }

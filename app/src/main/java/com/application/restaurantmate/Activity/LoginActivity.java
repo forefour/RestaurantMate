@@ -17,24 +17,28 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
+                    createRestaurant();
                     Intent intent = new Intent(LoginActivity.this, AppActivity.class);
                     startActivity(intent);
                     Log.d("User is signed in", "onAuthStateChanged:signed_in:" + user.getUid());
@@ -90,5 +94,10 @@ public class LoginActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+    //Create Restaurant in DB 
+    public void createRestaurant(){
+        DatabaseReference restaurantRef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid());
+        restaurantRef.child("Name").setValue("MK");
     }
 }

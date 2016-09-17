@@ -17,4 +17,21 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="70dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cooker page"
+        android:id="@+id/cooker_ativity"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Page"
+        android:id="@+id/table_activity"
+        android:layout_below="@+id/cooker_ativity"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
