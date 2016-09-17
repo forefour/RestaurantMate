@@ -83,6 +83,13 @@ public class CookerActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 Log.d("test_ChildListener","onChildChanged "+dataSnapshot.toString());
+                for(Iterator<DataSnapshot> it = dataSnapshots.iterator(); it.hasNext();){
+                    DataSnapshot data = it.next();
+                    if(data.getKey().equals(dataSnapshot.getKey())){
+                        dataSnapshots.set(dataSnapshots.indexOf(data),dataSnapshot);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
             }
 
             @Override
@@ -99,7 +106,7 @@ public class CookerActivity extends AppCompatActivity {
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                Log.d("test_ChildListener","onChildMoved "+dataSnapshot.toString());
+                Log.d("test_ChildListener","onChildRemoved "+dataSnapshot.toString());
             }
 
             @Override
