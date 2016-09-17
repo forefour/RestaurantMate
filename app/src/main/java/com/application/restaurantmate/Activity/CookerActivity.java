@@ -47,12 +47,12 @@ public class CookerActivity extends AppCompatActivity {
 
         adapter = new MenuAdapter(this, dataSnapshots);
         recyclerView.setAdapter(adapter);
+        addChangedRemovedMenuListener();
     }
 
     @Override
     public void onStart(){
         super.onStart();
-        test();
         final EditText addMenuEditText = (EditText)findViewById(R.id.add_menu_editText);
         final Button addMenuButton = (Button)findViewById(R.id.add_menu_button);
         Log.d("Foremost","Foremost1");
@@ -70,7 +70,7 @@ public class CookerActivity extends AppCompatActivity {
         });
     }
 
-    public void test(){
+    public void addChangedRemovedMenuListener(){
         DatabaseReference menuRef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Menus");
         menuRef.addChildEventListener(new ChildEventListener() {
             @Override
