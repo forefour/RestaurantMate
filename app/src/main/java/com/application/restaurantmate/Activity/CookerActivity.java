@@ -86,7 +86,12 @@ public class CookerActivity extends AppCompatActivity {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 Log.d("test_ChildListener","onChildRemoved "+dataSnapshot.toString());
-                //finish in adapter
+                for(DataSnapshot data : dataSnapshots){
+                    if(data.getKey().equals(dataSnapshot.getKey())){
+                        dataSnapshots.remove(data);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
             }
 
             @Override

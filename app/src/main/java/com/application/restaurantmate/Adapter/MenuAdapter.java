@@ -72,7 +72,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 //delete menu
                 DatabaseReference menuRef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Menus");
                 menuRef.child(dataSnapshots.get(position).getKey()).removeValue();
-                remove(position);
+                //remove(position);
             }
         });
     }
