@@ -18,7 +18,8 @@
         <activity android:name=".Activity.AppActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.CookerActivity" />
-        <activity android:name=".Activity.TableActivity"></activity>
+        <activity android:name=".Activity.TableActivity" />
+        <activity android:name=".Activity.FoodActivity"></activity>
     </application>
 
 </manifest>

@@ -31,6 +31,13 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'
 
+    // Single target that includes all FirebaseUI libraries
+    compile 'com.firebaseui:firebase-ui:0.5.3'
 
+    // FirebaseUI Database only
+    compile 'com.firebaseui:firebase-ui-database:0.5.3'
+
+    // FirebaseUI Auth only
+    compile 'com.firebaseui:firebase-ui-auth:0.5.3'
 }
 apply plugin: 'com.google.gms.google-services'

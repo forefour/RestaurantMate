@@ -1,6 +1,7 @@
 package com.application.restaurantmate.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.application.restaurantmate.Activity.AppActivity;
+import com.application.restaurantmate.Activity.FoodActivity;
 import com.application.restaurantmate.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,11 +35,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
         TextView menu;
         Button deleteMenuButton;
+        Button goFoodButton;
 
         MenuViewHolder(View itemView) {
             super(itemView);
             menu = (TextView)itemView.findViewById(R.id.menu_name);
             deleteMenuButton = (Button)itemView.findViewById(R.id.menu_delete);
+            goFoodButton = (Button)itemView.findViewById(R.id.menu_foods);
         }
     }
 
@@ -67,13 +72,22 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     @Override
     public void onBindViewHolder(final MenuViewHolder menuViewHolder, final int position ) {
         menuViewHolder.menu.setText(dataSnapshots.get(position).child("Name").getValue().toString());
+        //delete menu
         menuViewHolder.deleteMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //delete menu
                 DatabaseReference menuRef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Menus");
                 menuRef.child(dataSnapshots.get(position).getKey()).removeValue();
-                //remove(position);
+            }
+        });
+        //go to foods
+        menuViewHolder.goFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("key menu Go FOOD => ",dataSnapshots.get(position).getKey());
+                Intent intent = new Intent(v.getContext(), FoodActivity.class);
+                intent.putExtra("key_menu", dataSnapshots.get(position).getKey());
+                v.getContext().startActivity(intent);
             }
         });
     }

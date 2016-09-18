@@ -30,7 +30,6 @@ public class CookerActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView ;
     private LinearLayoutManager linearLayoutManager;
-    private SwipeRefreshLayout swipeContainer;
     private MenuAdapter adapter;
 
     List<DataSnapshot> dataSnapshots = new ArrayList<>();
