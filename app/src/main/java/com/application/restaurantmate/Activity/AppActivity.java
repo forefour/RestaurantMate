@@ -47,5 +47,14 @@ public class AppActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button customer = (Button)findViewById(R.id.customer_activity);
+        customer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppActivity.this, CustomerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

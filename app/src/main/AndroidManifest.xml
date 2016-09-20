@@ -19,7 +19,9 @@
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.CookerActivity" />
         <activity android:name=".Activity.TableActivity" />
-        <activity android:name=".Activity.FoodActivity"></activity>
+        <activity android:name=".Activity.FoodActivity" />
+        <activity android:name=".Activity.CustomerActivity" />
+        <activity android:name=".Activity.OrderActivity"></activity>
     </application>
 
 </manifest>
