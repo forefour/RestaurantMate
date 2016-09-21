@@ -74,6 +74,7 @@ public class OrderListAddFoodFragment extends Fragment {
                 Log.d("test_ChildListener","onChildAdded "+dataSnapshot.toString());
                 dataSnapshots.add(dataSnapshot);
                 adapter.notifyDataSetChanged();
+                Log.d("gg","add= "+dataSnapshot.toString());
             }
 
             @Override
@@ -84,6 +85,7 @@ public class OrderListAddFoodFragment extends Fragment {
                     if(data.getKey().equals(dataSnapshot.getKey())){
                         dataSnapshots.set(dataSnapshots.indexOf(data),dataSnapshot);
                         adapter.notifyDataSetChanged();
+                        Log.d("gg","changed= "+dataSnapshot.toString());
                     }
                 }
             }
@@ -96,6 +98,7 @@ public class OrderListAddFoodFragment extends Fragment {
                     if(data.getKey().equals(dataSnapshot.getKey())){
                         it.remove();
                         adapter.notifyDataSetChanged();
+                        Log.d("gg","remove= "+dataSnapshot.toString());
                     }
                 }
             }

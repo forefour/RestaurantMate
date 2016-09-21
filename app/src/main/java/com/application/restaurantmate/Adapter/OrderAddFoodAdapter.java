@@ -72,9 +72,10 @@ public class OrderAddFoodAdapter extends RecyclerView.Adapter<OrderAddFoodAdapte
         }
         else{
             orderAddFoodViewHolder.status.setText("");
+            //Log.d("gg1",dataSnapshots.get(position).toString());
         }
         orderAddFoodViewHolder.food.setText(dataSnapshots.get(position).child("FoodId").getValue().toString());
-        Log.d("gg",dataSnapshots.get(position).toString());
+        //Log.d("gg",dataSnapshots.get(position).toString());
         //delete menu
 
 
