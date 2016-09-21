@@ -66,18 +66,10 @@ public class OrderAddFoodAdapter extends RecyclerView.Adapter<OrderAddFoodAdapte
 
     @Override
     public void onBindViewHolder(final OrderAddFoodViewHolder orderAddFoodViewHolder, final int position ) {
-        //debug
-        if(dataSnapshots.get(position).child("Status").getValue() != null){
-            orderAddFoodViewHolder.status.setText(dataSnapshots.get(position).child("Status").getValue().toString());
-        }
-        else{
-            orderAddFoodViewHolder.status.setText("");
-            //Log.d("gg1",dataSnapshots.get(position).toString());
-        }
-        orderAddFoodViewHolder.food.setText(dataSnapshots.get(position).child("FoodId").getValue().toString());
-        //Log.d("gg",dataSnapshots.get(position).toString());
-        //delete menu
 
+        orderAddFoodViewHolder.status.setText(dataSnapshots.get(position).child("status").getValue().toString());
+        orderAddFoodViewHolder.food.setText(dataSnapshots.get(position).child("foodId").getValue().toString());
+        //Log.d("gg",dataSnapshots.get(position).toString());
 
     }
 
