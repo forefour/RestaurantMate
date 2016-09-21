@@ -67,19 +67,25 @@ public class GotoTableAdapter extends RecyclerView.Adapter<GotoTableAdapter.Goto
     @Override
     public void onBindViewHolder(final GotoTableViewHolder gotoTableViewHolder, final int position ) {
         gotoTableViewHolder.gotoTable.setText(dataSnapshots.get(position).child("Name").getValue().toString());
-        //delete menu
+        //Go to table button
         gotoTableViewHolder.gotoTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), OrderActivity.class);
-                intent.putExtra("key_table", dataSnapshots.get(position).getKey());
-                v.getContext().startActivity(intent);
 
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
                 DatabaseReference orderRef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Orders");
-                orderRef.push().child("Table").child(dataSnapshots.get(position).getKey()).setValue(true);
+                String orderId = orderRef.push().getKey();
+                orderRef.child(orderId).child("Table").child(dataSnapshots.get(position).getKey()).setValue(true);
+
+                Intent intent = new Intent(v.getContext(), OrderActivity.class);
+                //put table id
+                intent.putExtra("key_table", dataSnapshots.get(position).getKey());
+                //put order id
+                intent.putExtra("key_order", orderId);
+                v.getContext().startActivity(intent);
+
             }
         });
     }
