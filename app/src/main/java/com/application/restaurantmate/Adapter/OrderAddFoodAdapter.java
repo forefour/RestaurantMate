@@ -71,7 +71,7 @@ public class OrderAddFoodAdapter extends RecyclerView.Adapter<OrderAddFoodAdapte
             orderAddFoodViewHolder.status.setText(dataSnapshots.get(position).child("Status").getValue().toString());
         }
         else{
-            orderAddFoodViewHolder.status.setText("Wait To Order");
+            orderAddFoodViewHolder.status.setText("");
         }
         orderAddFoodViewHolder.food.setText(dataSnapshots.get(position).child("FoodId").getValue().toString());
         Log.d("gg",dataSnapshots.get(position).toString());
