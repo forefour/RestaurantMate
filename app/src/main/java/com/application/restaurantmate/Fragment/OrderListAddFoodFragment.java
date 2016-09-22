@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.application.restaurantmate.Activity.OrderActivity;
 import com.application.restaurantmate.Adapter.OrderAddFoodAdapter;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -62,8 +64,51 @@ public class OrderListAddFoodFragment extends Fragment {
 
         adapter = new OrderAddFoodAdapter(getContext(), dataSnapshots);
         recyclerView.setAdapter(adapter);
-        OrderActivity orderActivity = (OrderActivity)getActivity();
+        final OrderActivity orderActivity = (OrderActivity)getActivity();
         addChangedRemovedMenuListener(orderActivity.getOrderId());
+
+        OrderActivity orderActivity1 = (OrderActivity)getActivity();
+        Button finishOrderButton = (Button)getView().findViewById(R.id.finishOrderButton);
+        Button nowOrderButton = (Button)getView().findViewById(R.id.nowOrderButton);
+        finishOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference orderFef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Orders").child(orderActivity.getOrderId()).child("Foods");
+                orderFef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot tasksSnapshot) {
+                        for (DataSnapshot snapshot: tasksSnapshot.getChildren()) {
+                            snapshot.getRef().child("status").setValue("Finished");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
+        nowOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference orderFef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Orders").child(orderActivity.getOrderId()).child("Foods");
+                orderFef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot tasksSnapshot) {
+                        for (DataSnapshot snapshot: tasksSnapshot.getChildren()) {
+                            snapshot.getRef().child("status").setValue("SendToCooker");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
     }
 
     public void addChangedRemovedMenuListener(String orderId){
