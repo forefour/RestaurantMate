@@ -56,5 +56,14 @@ public class AppActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button dashBoardOrder = (Button)findViewById(R.id.dashboard_order_activity);
+        dashBoardOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppActivity.this, DashBoardOrderActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

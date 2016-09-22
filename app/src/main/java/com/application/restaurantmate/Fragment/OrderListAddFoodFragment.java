@@ -15,6 +15,7 @@ import com.application.restaurantmate.Activity.OrderActivity;
 import com.application.restaurantmate.Adapter.OrderAddFoodAdapter;
 import com.application.restaurantmate.Adapter.OrderShowCatAdapter;
 import com.application.restaurantmate.Adapter.OrderShowFoodAdapter;
+import com.application.restaurantmate.Model.OrderFoodDashBoard;
 import com.application.restaurantmate.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -73,12 +74,15 @@ public class OrderListAddFoodFragment extends Fragment {
         finishOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final DatabaseReference orderFoodStatus = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("OrderFoods");
                 DatabaseReference orderFef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Orders").child(orderActivity.getOrderId()).child("Foods");
                 orderFef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot tasksSnapshot) {
                         for (DataSnapshot snapshot: tasksSnapshot.getChildren()) {
                             snapshot.getRef().child("status").setValue("Finished");
+
+                            orderFoodStatus.child(snapshot.getKey()).child("status").setValue("Finished");
                         }
                     }
 
@@ -93,12 +97,17 @@ public class OrderListAddFoodFragment extends Fragment {
         nowOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final DatabaseReference orderFoodStatus = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("OrderFoods");
                 DatabaseReference orderFef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Orders").child(orderActivity.getOrderId()).child("Foods");
                 orderFef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot tasksSnapshot) {
                         for (DataSnapshot snapshot: tasksSnapshot.getChildren()) {
                             snapshot.getRef().child("status").setValue("SendToCooker");
+
+
+                            orderFoodStatus.child(snapshot.getKey()).child("status").setValue("SendToCooker");
                         }
                     }
 

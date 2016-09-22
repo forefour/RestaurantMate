@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.application.restaurantmate.Activity.OrderActivity;
 import com.application.restaurantmate.Model.OrderFood;
+import com.application.restaurantmate.Model.OrderFoodDashBoard;
 import com.application.restaurantmate.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -77,7 +78,13 @@ public class OrderShowFoodAdapter extends RecyclerView.Adapter<OrderShowFoodAdap
                 Log.d("KEY_foremostSF",dataSnapshots.get(position).getKey());
                 DatabaseReference ordersRef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("Orders").child(orderActivity.getOrderId());
                 OrderFood orderFood = new OrderFood(dataSnapshots.get(position).getKey(),"Waiting to Order");
-                ordersRef.child("Foods").push().setValue(orderFood);
+                String orderFoodId = ordersRef.child("Foods").push().getKey();
+                ordersRef.child("Foods").child(orderFoodId).setValue(orderFood);
+
+
+                DatabaseReference orderRef = mDatabase.child("Restaurants").child(mAuth.getCurrentUser().getUid()).child("OrderFoods");
+                OrderFoodDashBoard orderFoodDashBoard = new OrderFoodDashBoard(dataSnapshots.get(position).getKey(),"Waiting to Order",orderActivity.getOrderId());
+                orderRef.child(orderFoodId).setValue(orderFoodDashBoard);
             }
         });
 

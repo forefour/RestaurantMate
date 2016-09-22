@@ -43,4 +43,13 @@
         android:id="@+id/customer_activity"
         android:layout_below="@+id/table_activity"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Dashboard Order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_activity"
+        android:layout_alignLeft="@+id/logout"
+        android:layout_alignStart="@+id/logout"
+        android:id="@+id/dashboard_order_activity" />
 </RelativeLayout>
