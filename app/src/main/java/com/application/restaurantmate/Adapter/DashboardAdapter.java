@@ -71,6 +71,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
     public void onBindViewHolder(final DashboardViewHolder dashboardViewHolder, final int position ) {
         dashboardViewHolder.foodOrderName.setText(dataSnapshots.get(position).child("foodId").getValue().toString());
         dashboardViewHolder.status.setText(dataSnapshots.get(position).child("status").getValue().toString());
+        //BUGGGG
+        Log.d("fore-test",dataSnapshots.get(position).child("status").getValue().toString());
         if(!dataSnapshots.get(position).child("status").getValue().equals("SendToCooker"))
         {
             dashboardViewHolder.changeStatusButton.setVisibility(View.INVISIBLE);
