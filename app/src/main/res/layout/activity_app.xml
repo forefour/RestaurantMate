@@ -52,4 +52,13 @@
         android:layout_alignLeft="@+id/logout"
         android:layout_alignStart="@+id/logout"
         android:id="@+id/dashboard_order_activity" />
+
+    <Button
+        android:text="Test image saving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dashboard_order_activity"
+        android:layout_alignRight="@+id/logout"
+        android:layout_alignEnd="@+id/logout"
+        android:id="@+id/test_save_image" />
 </RelativeLayout>

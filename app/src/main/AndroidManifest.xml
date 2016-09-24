@@ -22,7 +22,8 @@
         <activity android:name=".Activity.FoodActivity" />
         <activity android:name=".Activity.CustomerActivity" />
         <activity android:name=".Activity.OrderActivity" />
-        <activity android:name=".Activity.DashBoardOrderActivity"></activity>
+        <activity android:name=".Activity.DashBoardOrderActivity" />
+        <activity android:name=".Activity.SaveImageActivity"></activity>
     </application>
 
 </manifest>

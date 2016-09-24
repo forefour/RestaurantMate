@@ -65,5 +65,14 @@ public class AppActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button testSaveImage = (Button)findViewById(R.id.test_save_image);
+        testSaveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppActivity.this, SaveImageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
