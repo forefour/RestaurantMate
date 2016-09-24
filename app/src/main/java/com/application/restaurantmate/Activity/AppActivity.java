@@ -74,5 +74,14 @@ public class AppActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button showIamgeButton = (Button)findViewById(R.id.show_image_at);
+        showIamgeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppActivity.this, ShowImageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

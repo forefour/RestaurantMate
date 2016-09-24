@@ -61,4 +61,14 @@
         android:layout_alignRight="@+id/logout"
         android:layout_alignEnd="@+id/logout"
         android:id="@+id/test_save_image" />
+
+    <Button
+        android:text="Show image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/logout"
+        android:layout_alignLeft="@+id/customer_activity"
+        android:layout_alignStart="@+id/customer_activity"
+        android:layout_marginBottom="11dp"
+        android:id="@+id/show_image_at" />
 </RelativeLayout>
